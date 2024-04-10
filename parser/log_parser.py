@@ -70,8 +70,7 @@ def parse_model_statistics(file_path: Path) -> dict:
 
 def get_time(file_path: Path) -> str:
     with open(file_path, 'r', encoding='utf-8') as file:
-        line = file.readline()
-        if line.startswith("| Время расчета"):
-            return line[-9:-1]
-        else:
-            return None
+        for line in file:
+            if line.startswith("| Время расчета"):
+                return line[-10:-2]
+    return None
